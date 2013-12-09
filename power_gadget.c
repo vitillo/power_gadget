@@ -246,7 +246,7 @@ cmdline(int argc, char **argv)
         switch (opt) {
         case 'e':
             delay_ms_temp = atoi(optarg);
-            if(delay_ms_temp > 50) {
+            if(delay_ms_temp >= 50) {
                 delay_us = delay_ms_temp * 1000;
             } else {
                 fprintf(stdout, "Sampling delay must be greater than 50 ms.\n");
