@@ -175,10 +175,10 @@ do_print_energy_info()
         convert_time_to_string(tv, time_buffer);
 
         read_tsc(&tsc);
-        fprintf(stdout,"%s,%llu,%.4lf,", time_buffer, tsc, total_elapsed_time);
+        fprintf(stdout,"%s,%lu,%.4lf,", time_buffer, tsc, total_elapsed_time);
         for (i = node; i < num_node; i++) {
             get_pp0_freq_mhz(i, &freq);
-            fprintf(stdout, "%u,", freq);
+            fprintf(stdout, "%lu,", freq);
             for (domain = 0; domain < RAPL_NR_DOMAIN; ++domain) {
                 if(is_supported_domain(domain)) {
                     fprintf(stdout, "%.4lf,%.4lf,%.4lf,",
@@ -220,7 +220,7 @@ do_print_energy_info()
         }
     }
     read_tsc(&tsc);
-    fprintf(stdout,"TSC=%llu\n", tsc);
+    fprintf(stdout,"TSC=%lu\n", tsc);
 }
 
 void

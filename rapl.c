@@ -96,6 +96,9 @@ uint64_t  get_num_rapl_nodes_pkg();
 uint64_t  get_num_rapl_nodes_pkg();
 uint64_t  get_num_rapl_nodes_pkg();
 
+// ericb  missing declaration forward
+int read_rapl_units(void);
+
 // OS specific
 int
 bind_context(cpu_set_t *new_context, cpu_set_t *old_context) {
@@ -1304,13 +1307,13 @@ get_os_freq(uint64_t cpu, uint64_t *freq)
     int out = 0;
     FILE *fp;
 
-    out = sprintf(path, "%s%u%s", "/sys/devices/system/cpu/cpu",cpu,"/cpufreq/cpuinfo_cur_freq");
+    out = sprintf(path, "%s%lu%s", "/sys/devices/system/cpu/cpu",cpu,"/cpufreq/cpuinfo_cur_freq");
 
     if(out > 0)
         fp = fopen(path, "r");
 
     if(NULL != fp){
-        fscanf(fp, "%u", freq);
+        fscanf(fp, "%lu", freq);
         fclose(fp);
     }
     else{
