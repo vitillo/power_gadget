@@ -11,10 +11,10 @@ rapl_lib_static:
 	ar rcs librapl.a msr.o cpuid.o rapl.o
 
 power_gadget_static: 
-	gcc $(CFLAGS) power_gadget.c -I. -L. -lm -o power_gadget ./librapl.a
+	gcc $(CFLAGS) power_gadget.c -I. -o power_gadget -L. -lm  ./librapl.a
 
 power_gadget: 
-	gcc $(CFLAGS) power_gadget.c -I. -L. -lm -lrapl -o power_gadget 
+	gcc $(CFLAGS) power_gadget.c -I. -o power_gadget -L. -lm -lrapl 
 
 gprof: CFLAGS = -pg
 gprof: all
